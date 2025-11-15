@@ -9,10 +9,17 @@
 <body>
     <div class="nav">
         <h1 class="title">Lex's Space</h1>
-        
-        <div class="links">
+        <div class="menu">
+            <h1>Menu</h1>
+            <div class="burger" onclick="toggleMenu()">
+                ☰
+            </div>
+        </div>
+
+
+        <div class="links" id="mobileMenu">
             <a href="index.html" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link">About Me</a>
+            <a href="about.html" class="nav-link">About</a>
             <a href="#" class="nav-link">Projects</a>
         </div>
     </div>
@@ -24,3 +31,31 @@
     
 </body>
 </html>
+
+<script>
+let isOpen = false;
+let animating = false;
+
+function toggleMenu() {
+    if (animating) return;
+
+    animating = true;
+
+    isOpen = !isOpen;
+    const menu = document.getElementById("mobileMenu");
+    const burger = document.querySelector(".burger");
+
+    menu.classList.toggle("open");
+
+    if (!menu.classList.contains("open")) {
+        burger.style.animation = "spinBack 0.2s linear"; 
+    } else {
+        burger.style.animation = "spin 0.2s linear";
+    }
+
+    setTimeout(() => {
+        burger.style.animation = "";
+        animating = false;
+    }, 100);
+}
+</script>
