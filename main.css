@@ -104,6 +104,11 @@ body {
     max-height: 500px;
 }
 
+button, .menu, .burger {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
 .menu {
     display: none;
     flex-direction: row;
