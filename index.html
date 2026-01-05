@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loaders.css/loaders.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spinkit/1.2.5/spinkit.min.css">
     <link rel="stylesheet" href="main.css">
-    <div id="loader" class="loader-inner ball-pulse"></div>
     <title>Lex's Space</title>
 </head>
 <body>
-
-
-<video autoplay muted loop preload="auto" class="background">
+<div id="loader" class="sk-chase">
+  <div class="sk-chase-dot"></div>
+  <div class="sk-chase-dot"></div>
+  <div class="sk-chase-dot"></div>
+  <div class="sk-chase-dot"></div>
+  <div class="sk-chase-dot"></div>
+  <div class="sk-chase-dot"></div>
+</div>
+<video id="bgVideo" autoplay muted loop preload="auto" class="background">
     <source src="back.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
@@ -85,10 +90,10 @@ const initialPage = location.hash.replace("#", "") || "home";
 showPage(initialPage);
 
 
-const video = document.getElementById("bgVideo");
-video.addEventListener('canplaythrough', () => {
+document.getElementById("bgVideo").addEventListener('canplaythrough', () => {
     document.getElementById("loader").style.display = 'none';
 });
+
 </script>
 
 </body>
