@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spinkit/1.2.5/spinkit.min.css">
-    <link rel="stylesheet" href="main.css">
-    <title>Lex's Space</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spinkit/1.2.5/spinkit.min.css">
+<link rel="stylesheet" href="main.css">
+
+<title>Lex's Space</title>
+
+<style>
+#loader {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    background-color: black;
+}
+</style>
 </head>
 <body>
+
+
 <div id="loader" class="sk-chase">
   <div class="sk-chase-dot"></div>
   <div class="sk-chase-dot"></div>
@@ -16,10 +32,13 @@
   <div class="sk-chase-dot"></div>
   <div class="sk-chase-dot"></div>
 </div>
+
+
 <video id="bgVideo" autoplay muted loop preload="auto" class="background">
     <source src="back.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
+
 
 <div class="nav">
     <h1 class="title">Lex's Space</h1>
@@ -35,6 +54,7 @@
         <a href="#" class="nav-link" onclick="showPage('projects')">Projects</a>
     </div>
 </div>
+
 
 <div class="content">
 
@@ -79,6 +99,7 @@ function toggleMenu() {
     }, 200);
 }
 
+
 function showPage(id) {
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.getElementById(id).classList.add("active");
@@ -86,14 +107,21 @@ function showPage(id) {
     history.pushState(null, "", "#" + id);
 }
 
+
 const initialPage = location.hash.replace("#", "") || "home";
 showPage(initialPage);
 
 
-document.getElementById("bgVideo").addEventListener('canplaythrough', () => {
-    document.getElementById("loader").style.display = 'none';
-});
+document.addEventListener("DOMContentLoaded", () => {
+    const video = document.getElementById("bgVideo");
+    const loader = document.getElementById("loader");
 
+    loader.style.display = "flex";
+
+    video.addEventListener('canplaythrough', () => {
+        loader.style.display = 'none';
+    });
+});
 </script>
 
 </body>
