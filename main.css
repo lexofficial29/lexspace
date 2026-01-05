@@ -170,3 +170,10 @@ button, .menu, .burger {
     user-select: none;
     opacity: 0.3;
 }
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}

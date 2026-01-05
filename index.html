@@ -3,63 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loaders.css/loaders.min.css">
     <link rel="stylesheet" href="main.css">
+    <div id="loader" class="loader-inner ball-pulse"></div>
     <title>Lex's Space</title>
 </head>
 <body>
-    <div class="nav">
-        <h1 class="title">Lex's Space</h1>
-        <div class="menu">
-            <h1>Menu</h1>
-            <div class="burger" onclick="toggleMenu()">
-                ☰
-            </div>
-        </div>
 
 
-        <div class="links" id="mobileMenu">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="#" class="nav-link">Projects</a>
-        </div>
+<video autoplay muted loop preload="auto" class="background">
+    <source src="back.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<div class="nav">
+    <h1 class="title">Lex's Space</h1>
+
+    <div class="menu">
+        <h1>Menu</h1>
+        <div class="burger" onclick="toggleMenu()">☰</div>
     </div>
 
-    <div class="content">
+    <div class="links" id="mobileMenu">
+        <a href="#" class="nav-link" onclick="showPage('home')">Home</a>
+        <a href="#" class="nav-link" onclick="showPage('about')">About</a>
+        <a href="#" class="nav-link" onclick="showPage('projects')">Projects</a>
+    </div>
+</div>
+
+<div class="content">
+
+    <!-- HOME -->
+    <section id="home" class="page active">
         <h2>Welcome to My Personal Space!</h2>
         <p>Hello! I'm Lex, and this is my personal website where I share my projects and interests. Feel free to explore and learn more about me!</p>
-    </div>
+    </section>
 
-    <video autoplay muted loop class="background">
-        <source src="back.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</body>
-</html>
+    <!-- ABOUT -->
+    <section id="about" class="page">
+        <h2>Oh you wanna know more?</h2>
+        <p>Still working on this :P</p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="page">
+        <h2>Projects</h2>
+        <p>Coming soon 👀</p>
+    </section>
+
+</div>
 
 <script>
-let isOpen = false;
-let animating = false;
 
+let animating = false;
 function toggleMenu() {
     if (animating) return;
-
     animating = true;
 
-    isOpen = !isOpen;
     const menu = document.getElementById("mobileMenu");
     const burger = document.querySelector(".burger");
 
     menu.classList.toggle("open");
-
-    if (!menu.classList.contains("open")) {
-        burger.style.animation = "spinBack 0.2s linear"; 
-    } else {
-        burger.style.animation = "spin 0.2s linear";
-    }
+    burger.style.animation = menu.classList.contains("open") 
+        ? "spin 0.2s linear"
+        : "spinBack 0.2s linear";
 
     setTimeout(() => {
         burger.style.animation = "";
         animating = false;
-    }, 100);
+    }, 200);
 }
+
+function showPage(id) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    document.getElementById("mobileMenu").classList.remove("open");
+    history.pushState(null, "", "#" + id);
+}
+
+const initialPage = location.hash.replace("#", "") || "home";
+showPage(initialPage);
+
+
+const video = document.getElementById("bgVideo");
+video.addEventListener('canplaythrough', () => {
+    document.getElementById("loader").style.display = 'none';
+});
 </script>
+
+</body>
+</html>
