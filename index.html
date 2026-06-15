@@ -39,7 +39,7 @@
     <!-- ABOUT -->
     <section id="about" class="page">
         <h2>Oh you wanna know more?</h2>
-        <p>Still working on this :P</p>
+        <p>Click <a href="#" style="color: white; font-size: 32px" onclick="findOut()">HERE</a> to find out more</p>
     </section>
 
     <!-- PROJECTS -->
@@ -80,6 +80,10 @@ function showPage(id) {
 
 const initialPage = location.hash.replace("#", "") || "home";
 showPage(initialPage);
+
+function findOut() {
+    window.location = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+}
 
 
 </script>
